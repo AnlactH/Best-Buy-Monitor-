@@ -38,18 +38,14 @@ const sendHttpRequest = (method, url, data) => {
 const getDataList = () => {
     sendHttpRequest('GET', `https://api.bestbuy.com/v1/products(sku in(${sku_list}))?show=sku,name,salePrice,onlineAvailability,inStoreAvailability,image&format=json&apiKey=YOURAPIHERE`)
     .then(responseData => {
-        console.log(responseData.products); //responseData.products logs only the product info w/o it, it logs everything | responseData.products[0] gets the first object val
         for (const stockStatus of responseData.products) {
-            console.log(stockStatus)
+            console.log(stockStatus);
             if (stockStatus.onlineAvailability == true) {
-                console.log('Item in Stock')
+                console.log('Item in Stock', stockStatus.addToCartUrl)
             } else {
                 console.log('Item not in stock')
-            }
-
-        };
-    })
-    .then(stockStatus => {
+            };
+        }
     })
     .catch(err => {
         console.log(err, err.data);
