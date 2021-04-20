@@ -33,8 +33,6 @@ const sendHttpRequest = (method, url, data) => {
 
 // getData();
 
-//make for loop to check each item if its availalbe 
-
 const getDataList = () => {
     sendHttpRequest('GET', `https://api.bestbuy.com/v1/products(sku in(${sku_list}))?show=sku,name,salePrice,onlineAvailability,inStoreAvailability,image&format=json&apiKey=YOURAPIHERE`)
     .then(responseData => {
